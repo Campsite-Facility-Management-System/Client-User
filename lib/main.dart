@@ -1,9 +1,9 @@
 import 'package:client_user/screen/homePage/campDetailScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:client_user/screen/sign/loginScreen.dart';
-import 'package:client_user/screen/sign/signUpScreen.dart';
+import 'package:client_user/screen/signPage/loginScreen.dart';
+import 'package:client_user/screen/signPage/signUpScreen.dart';
 import 'package:client_user/screen/homePage/HomePage.dart';
-import 'package:client_user/function/categoryList.dart';
+import 'package:client_user/container/campTimeline/categoryList.dart';
 import 'package:get/get.dart';
 
 void main() {

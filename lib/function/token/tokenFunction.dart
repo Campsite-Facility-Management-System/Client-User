@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:convert';
-import 'package:client_user/env.dart';
+import 'package:client_user/function/env.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -16,7 +16,7 @@ class TokenFunction {
     String myToken = "Bearer" + value.toString();
 
     if (value != null) {
-      var response = await http.post(url, headers: {
+      var response = await http.post(Uri.parse(url), headers: {
         'Authorization': myToken,
       });
       // print(response.body);
@@ -72,7 +72,7 @@ class TokenFunction {
     var r = await token.read(key: 'token');
     print(r);
     var url = Env.url + '/api/auth/login';
-    var response = await http.post(url, body: {
+    var response = await http.post(Uri.parse(url), body: {
       'password': passwd,
       'email': email,
     });

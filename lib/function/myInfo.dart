@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:client_user/env.dart';
+import 'package:client_user/function/env.dart';
 import 'dart:convert';
 
 class MyInfo {
