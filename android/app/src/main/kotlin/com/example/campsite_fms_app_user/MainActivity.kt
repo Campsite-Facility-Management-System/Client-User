@@ -1,4 +1,4 @@
-package com.example.client_user
+package com.example.campsiteFmsAppUser
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.SplashScreen

@@ -1,4 +1,4 @@
-package com.example.client_user
+package com.example.campsiteFmsAppUser
 
 
 
