@@ -16,7 +16,7 @@
 		9BA812C1D1A363F2ED58A7B0 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCDF7C5DC1EE03F0E62C4B4 /* Pods_Runner.framework */; };
 		E849D1992678E84D009F7325 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E849D1982678E84D009F7325 /* SplashViewController.swift */; };
 		E8680C7B2678EBF800E29EE5 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = E8680C7A2678EBF800E29EE5 /* splash.json */; };
-		E881D296269C226300225777 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E881D295269C226300225777 /* GoogleService-Info.plist */; };
+		E8F8EA8C2695C10D008867F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8F8EA8B2695C10D008867F7 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,7 +51,7 @@
 		DBCDF7C5DC1EE03F0E62C4B4 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E849D1982678E84D009F7325 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		E8680C7A2678EBF800E29EE5 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
-		E881D295269C226300225777 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E8F8EA8B2695C10D008867F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA5FE0C48091F6DB73FF16A6 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +110,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
-				E881D295269C226300225777 /* GoogleService-Info.plist */,
+				E8F8EA8B2695C10D008867F7 /* GoogleService-Info.plist */,
 				E8680C7A2678EBF800E29EE5 /* splash.json */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -201,7 +201,7 @@
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 				E8680C7B2678EBF800E29EE5 /* splash.json in Resources */,
-				E881D296269C226300225777 /* GoogleService-Info.plist in Resources */,
+				E8F8EA8C2695C10D008867F7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +390,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
@@ -534,7 +533,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -568,7 +566,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

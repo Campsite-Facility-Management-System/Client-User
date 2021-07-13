@@ -20,8 +20,7 @@ class ReservationScreen extends StatefulWidget {
 
 class ReservationScreenState extends State<ReservationScreen> {
   final token = new FlutterSecureStorage();
-  // static
-  final provider = new IdCollector();
+  static final provider = new IdCollector();
   final tokenFunction = TokenFunction();
   TextEditingController adult_number = new TextEditingController();
   TextEditingController children_number = new TextEditingController();
@@ -44,7 +43,7 @@ class ReservationScreenState extends State<ReservationScreen> {
 
   @override
   Widget build(context) {
-    // final controller = Get.put(CampDetailGetX());
+    final controller = Get.put(CampDetailGetX());
     final reservationController = Get.put(ReservationGetX());
     Future.delayed(Duration(milliseconds: 1000), () {
       // Do something
@@ -101,13 +100,6 @@ class ReservationScreenState extends State<ReservationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Reservation'),
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Get.back();
-          },
-        ),
         backgroundColor: Color(0xFF00A963),
       ),
       body: SingleChildScrollView(
@@ -164,7 +156,7 @@ class ReservationScreenState extends State<ReservationScreen> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text('어린이 인원수'),
+                        Text('어린아 인원수'),
                       ],
                     ),
                     TextFormField(
@@ -183,7 +175,7 @@ class ReservationScreenState extends State<ReservationScreen> {
                       ],
                     ),
                     TextFormField(
-                      decoration: InputDecoration(hintText: '차량 수'),
+                      decoration: InputDecoration(hintText: '차량수'),
                       controller: car_number,
                     ),
                     SizedBox(
@@ -194,7 +186,7 @@ class ReservationScreenState extends State<ReservationScreen> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text('이용 요금'),
+                        Text('이용요금'),
                       ],
                     ),
                     Row(

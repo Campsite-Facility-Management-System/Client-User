@@ -17,11 +17,6 @@ class ReservationGetX extends GetxController {
   var children_number;
   final token = FlutterSecureStorage();
 
-  // setPrice(price) {
-  //   price = price;
-  //   update();
-  // }
-
   reservation() async {
     var value = await token.read(key: 'token');
     String myToken = "Bearer" + value.toString();

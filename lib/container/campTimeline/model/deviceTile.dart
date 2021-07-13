@@ -25,9 +25,6 @@ class DeviceTile {
                 onTap: () => {
                   reservationController.device_id = item['id'],
                   reservationController.price = item['price'],
-                  // reservationController.setPrice(item['price']),
-                  print(item['id']),
-                  print(item['price']),
                   Get.to(ReservationScreen()),
                 },
                 title: Text(
