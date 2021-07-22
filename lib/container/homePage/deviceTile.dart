@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:client_user/function/env.dart';
-import 'package:client_user/getX/reservationGetX.dart';
-import 'package:client_user/screen/reservationPage/reservation.dart';
+import 'package:client_user/Getx/reservationGetX.dart';
+import 'package:client_user/screen/reservation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';

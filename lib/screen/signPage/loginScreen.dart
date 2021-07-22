@@ -1,7 +1,12 @@
 import 'dart:ffi';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:client_user/function/token/tokenFunction.dart';
+import 'package:client_user/Getx/tokenGetX.dart';
+import 'package:client_user/main.dart';
+import 'package:client_user/screen/signPage/signUpScreen.dart';
+// import 'package:client_user_modify/function/token/tokenFunction.dart';
+// import 'package:client_user_modify/function/token/tokenFunction.dart';
+
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,33 +16,35 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:client_user/screen/homePage/HomePage.dart';
-import 'package:client_user/function/token/tokenFunction.dart';
+import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
-  @override
-  _LoginScreenState createState() => new _LoginScreenState();
-}
+class LoginScreen extends StatelessWidget {
+  //@override
+  // _LoginScreenState createState() => new _LoginScreenState();
 
-class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _email = new TextEditingController();
   TextEditingController _passwd = new TextEditingController();
   final token = new FlutterSecureStorage();
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey();
   static DateTime pressBack;
-  final tokenFunction = new TokenFunction();
+  final controller = new TokenGetX();
+
+  // final tokenFunction = new TokenFunction();
 
   _check() async {
-    bool result = await tokenFunction.tokenCheck(context);
+    bool result = await TokenGetX().tokenCheck();
     // print('tokenstatus: ' + tokenStatus.toString());
     if (result == true) {
-      Navigator.pushNamed(context, '/homePage');
+      // Navigator.pushNamed(context, '/homePage');
+      Get.to(HomePage());
     }
   }
 
   _login(String email, String passwd) async {
-    bool result = await tokenFunction.tokenCreate(email, passwd);
+    bool result = await TokenGetX().tokenCreate(email, passwd);
     if (result) {
-      Navigator.pushNamed(context, '/homePage');
+      // Navigator.pushNamed(context, '/homePage');
+      Get.to(HomePage());
     }
   }
 
@@ -55,15 +62,21 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       return false;
     } else {
-      SystemNavigator.pop();
+      // SystemNavigator.pop();
+      Get.back();
       return true;
     }
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   // super.initState();
+  //   _check();
+  // }
+
+  // @override
+  void onInit() {
     _check();
   }
 
@@ -144,10 +157,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     width: 500,
                     height: 50,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
-                      color: Color(0xFF00A963),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        primary: Color(0xFF00A963),
+                      ),
                       onPressed: () => _login(_email.text, _passwd.text),
                       child: Text(
                         '로그인',
@@ -162,7 +177,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     child: TextButton(
                       // color: Color(0xFFFFFFFF),
-                      onPressed: () => Navigator.pushNamed(context, '/signIn'),
+                      // onPressed: () => Navigator.pushNamed(context, '/signIn'),
+                      onPressed: () => Get.to(SignUpScreen()),
                       child: Text(
                         '회원가입',
                         style: TextStyle(
@@ -172,26 +188,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: <Widget>[
-                  //     // RaisedButton(
-                  //     //   onPressed: null,
-                  //     //   child: Text('아이디/비밀번호 찾기'),
-                  //     // ),
-                  //     // SizedBox(width: 30),
-                  //     RaisedButton(
-                  //       color: Color(0xFF00A963),
-                  //       onPressed: () =>
-                  //           Navigator.pushNamed(context, '/signIn'),
-                  //       child: Text(
-                  //         '회원가입',
-                  //         style: TextStyle(color: Colors.white),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // )
                 ],
               ),
             ),
@@ -201,16 +197,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-// void flutterToast() async {
-//   try {
-//     Fluttertoast.showToast(
-//       msg: '로그인 실패',
-//       toastLength: Toast.LENGTH_SHORT,
-//       gravity: ToastGravity.BOTTOM,
-//       textColor: Colors.white,
-//     );
-//   } catch (e) {
-//     debugPrint(e);
-//   }
-// }

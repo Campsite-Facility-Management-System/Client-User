@@ -52,6 +52,7 @@ class TokenGetX extends GetxController {
     }
   }
 
+  //Future 형으로 수정
   tokenCreate(String email, String passwd) async {
     print("tokenCreate run");
     var r = await token.read(key: 'token');

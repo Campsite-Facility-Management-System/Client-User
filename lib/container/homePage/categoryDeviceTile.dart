@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:client_user/function/env.dart';
-import 'package:client_user/getX/categoryDeviceGetX.dart';
-import 'package:client_user/container/campTimeline/model/deviceTile.dart';
+import 'package:client_user/Getx/categoryDeviceGetX.dart';
+import 'package:client_user/container/homePage/deviceTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';

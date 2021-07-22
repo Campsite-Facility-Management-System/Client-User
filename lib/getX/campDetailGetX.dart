@@ -1,22 +1,19 @@
 import 'dart:convert';
-
 import 'package:client_user/function/env.dart';
-// import 'package:client_user/provider/idCollector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-// import 'package:provider/provider.dart';
 
 class CampDetailGetX extends GetxController {
   final token = FlutterSecureStorage();
   var selectedCategoryId;
   var selectedCampId;
-  List ciList = new List();
-  List cnList = new List();
+  List ciList = [];
+  List cnList = [];
   Map<String, int> cMap = new Map();
   Map<String, int> campIndex = new Map();
-  var campDetailData;
+  var detailData;
 
   setCategoryId(id) {
     this.selectedCategoryId = id;
@@ -46,41 +43,69 @@ class CampDetailGetX extends GetxController {
     this.selectedCampId = id;
   }
 
-  setCampDetailData(data) {
-    this.campDetailData = data;
+  setDetailData(data) {
+    this.detailData = data;
     update();
   }
 
-  getData() async {
-    var url = Env.url +
-        '/api/reservation/user/campsite/info?campsite_id=' +
-        selectedCampId.toString();
-    // String value = await token.read(key: 'token');
-    // String myToken = ("Bearer " + value);
-
-    // var response = await http.get(url);
-
-    // , headers: {
-    //   'Authorization': myToken,
-    // }, body: {
-    //   'campsite_id': selectedCampId.toString(),
-    // }
-    // );
-
-    await setCampDetailData(
-        jsonDecode(utf8.decode((await http.get(Uri.parse(url))).bodyBytes)));
-
-    print(campDetailData);
-    print(campDetailData['img_url'][0]['img_url']);
-
-    // for (var i = 0; i < categoryList.length; i++) {
-    //   setCMap(categoryList[i]['id'], categoryList[i]['name']);
-    // }
+  @override
+  onInit() {
+    super.onInit();
   }
 
-//   @override
-//   void onInit() {
-//     // TODO: implement onInit
-//     super.onInit();
+  apiCampDetail() async {
+    var url = Env.url + '/api/campsite/user/detail/list';
+    String value = await token.read(key: 'token');
+    String myToken = ("Bearer " + value);
+
+    var response = await http.post(Uri.parse(url), headers: {
+      'Authorization': myToken,
+    }, body: {
+      'campsite_id': selectedCampId.toString(),
+    });
+
+    await setDetailData(jsonDecode(utf8.decode(response.bodyBytes)));
+
+    cMap.clear();
+    for (var i = 0; i < detailData.length; i++) {
+      setCMap(detailData[i]['id'], detailData[i]['name']);
+    }
+
+    print(detailData);
+  }
+
+  // getData() async {
+  //   var url = Env.url +
+  //       '/api/reservation/user/campsite/info?campsite_id=' +
+  //       selectedCampId.toString();
+  // }
+  // String value = await token.read(key: 'token');
+  // String myToken = ("Bearer " + value);
+
+  // var response = await http.get(url);
+
+  // , headers: {
+  //   'Authorization': myToken,
+  // }, body: {
+  //   'campsite_id': selectedCampId.toString(),
+  // }
+  // );
+
+//     await setCampDetailData(
+//         jsonDecode(utf8.decode((await http.get(Uri.parse(url))).bodyBytes)));
+
+//     print(campDetailData);
+//     print(campDetailData['img_url'][0]['img_url']);
+
+//     // for (var i = 0; i < categoryList.length; i++) {
+//     //   setCMap(categoryList[i]['id'], categoryList[i]['name']);
+//     // }
 //   }
+
+// //   @override
+// //   void onInit() {
+// //     // TODO: implement onInit
+// //     super.onInit();
+// //   }
+
 }

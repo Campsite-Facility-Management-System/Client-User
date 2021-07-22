@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:client_user/function/env.dart';
 import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 
-class SignUpScreen extends StatefulWidget {
-  @override
-  _SignUpScreenState createState() => new _SignUpScreenState();
-}
+class SignUpScreen extends StatelessWidget {
+  // @override
+  // _SignUpScreenState createState() => new _SignUpScreenState();
 
-class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _email = new TextEditingController();
   TextEditingController _passwd = new TextEditingController();
@@ -35,7 +34,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       print(response.headers);
       print(response.body);
       print(response.statusCode);
-      Navigator.pop(context);
+
+      // Navigator.pop(context);
+      Get.back();
     }
   }
 
@@ -173,7 +174,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    RaisedButton(
+                    ElevatedButton(
                       onPressed: () => _signUp(
                         _email.text,
                         _passwd.text,
@@ -193,3 +194,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+
+// class _SignUpScreenState extends State<SignUpScreen> {
+  
+// }

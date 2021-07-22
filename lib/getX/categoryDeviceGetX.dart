@@ -10,8 +10,8 @@ class CategoryDeviceGetX extends GetxController {
   final token = FlutterSecureStorage();
   var selectedCategoryId;
   var selectedCampId;
-  List ciList = new List();
-  List cnList = new List();
+  List ciList = [];
+  List cnList = [];
   Map<String, int> cMap = new Map();
   Map<String, int> campIndex = new Map();
   var categoryList;

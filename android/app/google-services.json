@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1024706229136:android:c7525ce905fe79b6cbb915",
         "android_client_info": {
-          "package_name": "com.example.campsiteFmsAppUser"
+          "package_name": "com.modakmodak.campsiteFmsAppUser"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "1024706229136-qfdp01fa94oe4gi06tu1merd0v5srkmt.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.campsiteFmsAppUser"
+                "bundle_id": "com.modakmodak.campsiteFmsAppUser"
               }
             }
           ]

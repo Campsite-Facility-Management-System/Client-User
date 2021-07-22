@@ -77,17 +77,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        initialBinding: BindingsBuilder(() {
-          Get.put(Notification_Controller());
-        }),
-        title: '모닥모닥',
-        debugShowCheckedModeBanner: false, //debug ribbon remove
-        initialRoute: '/',
-        routes: {
-          '/': (context) => LoginScreen(),
-          '/signIn': (context) => SignUpScreen(),
-          '/homePage': (context) => HomePage(),
-          // '/campDetail': (context) => CampDetailScreen(),
-        });
+      title: '모닥모닥',
+      debugShowCheckedModeBanner: false, //debug ribbon remove
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => LoginScreen()),
+        GetPage(name: '/signIn', page: () => SignUpScreen()),
+        GetPage(name: '/homPage', page: () => HomePage()),
+        //GetPage(name: '/homPage', page: () => HomePage()),
+      ],
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+    );
   }
 }

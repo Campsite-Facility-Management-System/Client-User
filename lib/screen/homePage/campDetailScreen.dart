@@ -1,11 +1,15 @@
+import 'package:client_user/Getx/campDetailGetX.dart';
+import 'package:client_user/Getx/tokenGetX.dart';
 import 'package:client_user/function/env.dart';
-import 'package:client_user/container/campTimeline/categoryList.dart';
-import 'package:client_user/getX/campDetailGetX.dart';
-import 'package:client_user/getX/categoryDeviceGetX.dart';
-import 'package:client_user/function/token/tokenFunction.dart';
-import 'package:client_user/screen/homePage/camp/myCamp.dart';
-import 'package:client_user/provider/idCollector.dart';
-import 'package:client_user/screen/reservationPage/reservation.dart';
+import 'package:client_user/container/homePage/categoryList.dart';
+import 'package:client_user/Getx/campDetailGetX.dart';
+import 'package:client_user/Getx/categoryDeviceGetX.dart';
+import 'package:client_user/Getx/tokenGetX.dart';
+// import 'package:client_user_modify/function/token/tokenFunction.dart';
+import 'package:client_user/screen/homePage/myCamp.dart';
+// import 'package:client_user_modify/provider/idCollector.dart';
+// import 'package:client_user_modify/screen/reservationPage/reservation.dart';
+import 'package:client_user/screen/signPage/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -17,26 +21,32 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:expand_widget/expand_widget.dart';
 
-class CampDetailScreen extends StatefulWidget {
-  @override
-  CampDetailScreenState createState() => CampDetailScreenState();
-}
+class CampDetailScreen extends StatelessWidget {
+  // @override
+  // CampDetailScreenState createState() => CampDetailScreenState();
 
-class CampDetailScreenState extends State<CampDetailScreen> {
   final token = new FlutterSecureStorage();
-  static final provider = new IdCollector();
-  final tokenFunction = TokenFunction();
+  // final controller = new CampDetailGetX();
+  // static final provider = new IdCollector();
+  final tokencontroller = new TokenGetX();
+  // final tokenFunction = TokenFunction();
 
   _check() async {
-    bool result = await tokenFunction.tokenCheck(context);
+    bool result = await TokenGetX().tokenCheck();
     if (!result) {
-      Navigator.pushNamed(context, '/login');
+      Get.to(LoginScreen());
+      // Navigator.pushNamed(context, '/login');
     }
   }
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _check();
+  // }
+
   @override
-  void initState() {
-    super.initState();
+  void onInit() {
     _check();
   }
 
@@ -68,7 +78,7 @@ class CampDetailScreenState extends State<CampDetailScreen> {
                         width: 15,
                       ),
                       Text(
-                        controller.campDetailData['name'].toString(),
+                        controller.detailData['name'].toString(),
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -96,7 +106,7 @@ class CampDetailScreenState extends State<CampDetailScreen> {
                         );
                       },
                       imageUrl: Env.url +
-                          controller.campDetailData['img_url'][0]['img_url'],
+                          controller.detailData['img_url'][0]['img_url'],
                       placeholder: (context, url) => Container(
                         height: 100,
                         child: SizedBox(
@@ -120,7 +130,7 @@ class CampDetailScreenState extends State<CampDetailScreen> {
                         style: TextStyle(fontSize: 20),
                       ),
                       Text(
-                        controller.campDetailData['address'],
+                        controller.detailData['address'],
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
@@ -138,7 +148,7 @@ class CampDetailScreenState extends State<CampDetailScreen> {
                         style: TextStyle(fontSize: 20),
                       ),
                       Text(
-                        controller.campDetailData['telephone'],
+                        controller.detailData['telephone'],
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
@@ -166,7 +176,7 @@ class CampDetailScreenState extends State<CampDetailScreen> {
                       SizedBox(
                         width: 380,
                         child: ExpandText(
-                          controller.campDetailData['description'] +
+                          controller.detailData['description'] +
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit risus pulvinar, hendrerit nisi quis, vehicula ante. Morbi ut diam elit. Praesent non justo sodales, auctor lacus id, congue massa. Duis ac odio dui. Sed sed egestas metus. Donec hendrerit velit magna. Vivamus elementum, nulla ac tempor euismod, erat nunc mollis diam, nec consequat nisl ex eu tellus. Curabitur fringilla enim at lorem pulvinar, id ornare tellus aliquam. Cras eget nibh tempor lacus aliquam rutrum.',
                           style: TextStyle(fontSize: 20),
                           textAlign: TextAlign.justify,
@@ -223,3 +233,7 @@ class CampDetailScreenState extends State<CampDetailScreen> {
     );
   }
 }
+
+// class CampDetailScreenState extends State<CampDetailScreen> {
+ 
+// }

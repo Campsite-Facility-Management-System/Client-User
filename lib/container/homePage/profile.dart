@@ -1,31 +1,27 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:client_user/function/env.dart';
-import 'package:client_user/function/gateway.dart';
 import 'package:client_user/function/myInfo.dart';
-import 'package:client_user/getX/tokenGetX.dart';
+import 'package:client_user/Getx/homePage/homePageGetX.dart';
+import 'package:client_user/Getx/tokenGetX.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-class ProfileScreen extends StatefulWidget {
-  @override
-  ProfileScreenState createState() => ProfileScreenState();
-}
-
-class ProfileScreenState extends State<ProfileScreen> {
-  final gateway = Gateway();
+class ProfileScreen extends StatelessWidget {
+  // @override
+  // ProfileScreenState createState() => ProfileScreenState();
   final token = new FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
     final tokenController = Get.put(TokenGetX());
+    final controller = Get.put(HomePageGetX());
 
     return Container(
       margin: EdgeInsets.only(bottom: 50),
       child: FutureBuilder<MyInfo>(
-        future: gateway.me(context),
+        future: controller
+            .me(), //snapshot으로 데이터 유무. Futer Getbuilder 최대한 회피, obx, obs로 최대한 변환
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Column(
@@ -91,8 +87,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       SizedBox(width: 30),
-                      RaisedButton(
-                        color: Colors.green,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xFF00A963),
+                        ),
                         onPressed: () => tokenController.logout(),
                         child: Text(
                           '로그아웃',
@@ -138,3 +136,5 @@ class ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+
+// class ProfileScreenState extends State<ProfileScreen> {}

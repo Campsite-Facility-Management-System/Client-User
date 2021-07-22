@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:client_user/function/env.dart';
 // import 'package:client_user/function/getX/campListGetX.dart';
-import 'package:client_user/getX/campDetailGetX.dart';
-import 'package:client_user/container/campTimeline/categoryList.dart';
-import 'package:client_user/getX/categoryDeviceGetX.dart';
+import 'package:client_user/Getx/campDetailGetX.dart';
+import 'package:client_user/container/homePage/categoryList.dart';
+import 'package:client_user/Getx/categoryDeviceGetX.dart';
 import 'package:client_user/container/homePage/profile.dart';
-import 'package:client_user/provider/idCollector.dart';
+// import 'package:client_user/provider/idCollector.dart';
+import 'package:client_user/Getx/collector.dart';
 // import 'package:client_user/screen/homePage/addCampScreen.dart';
 import 'package:client_user/screen/homePage/campDetailScreen.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class MyCamp {
                     //     .setCampId(item['id']),
                     controller.selectedCampId = item['id'],
                     categoryDeviceController.selectedCampId = item['id'],
-                    controller.getData(),
+                    // controller.getData(),
                     categoryDeviceController.apiDetailData(),
 
                     Future.delayed(Duration(milliseconds: 1000), () {

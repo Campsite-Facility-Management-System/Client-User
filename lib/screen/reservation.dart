@@ -1,8 +1,11 @@
 import 'package:client_user/function/env.dart';
-import 'package:client_user/container/campTimeline/categoryList.dart';
-import 'package:client_user/getX/campDetailGetX.dart';
-import 'package:client_user/function/token/tokenFunction.dart';
-import 'package:client_user/provider/idCollector.dart';
+import 'package:client_user/container/homePage/categoryList.dart';
+import 'package:client_user/Getx/campDetailGetX.dart';
+// import 'package:client_user_modify/function/token/tokenFunction.dart';
+import 'package:client_user/Getx/tokenGetX.dart';
+import 'package:client_user/screen/signPage/loginScreen.dart';
+// import 'package:client_user_modify/provider/idCollector.dart';
+import 'package:client_user/Getx/collector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -10,7 +13,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-import 'package:client_user/getX/reservationGetX.dart';
+import 'package:client_user/Getx/reservationGetX.dart';
 import 'package:intl/intl.dart';
 
 class ReservationScreen extends StatefulWidget {
@@ -21,7 +24,8 @@ class ReservationScreen extends StatefulWidget {
 class ReservationScreenState extends State<ReservationScreen> {
   final token = new FlutterSecureStorage();
   static final provider = new IdCollector();
-  final tokenFunction = TokenFunction();
+  // final tokenFunction = TokenFunction();
+  final controller = new TokenGetX();
   TextEditingController adult_number = new TextEditingController();
   TextEditingController children_number = new TextEditingController();
   TextEditingController car_number = new TextEditingController();
@@ -29,17 +33,23 @@ class ReservationScreenState extends State<ReservationScreen> {
   String endDate;
 
   _check() async {
-    bool result = await tokenFunction.tokenCheck(context);
+    bool result = await TokenGetX().tokenCheck();
     if (!result) {
-      Navigator.pushNamed(context, '/login');
+      // Navigator.pushNamed(context, '/login');
+      Get.to(LoginScreen());
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _check();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _check();
+  // }
+
+  // @override
+  // void onInit() {
+  //   _check();
+  // }
 
   @override
   Widget build(context) {

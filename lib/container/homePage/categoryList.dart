@@ -1,27 +1,26 @@
 import 'package:client_user/function/env.dart';
 // import 'package:client_user/function/deviceList.dart';
 // import 'package:client_user/function/gateway.dart';
-import 'package:client_user/getX/campDetailGetX.dart';
-import 'package:client_user/getX/categoryDeviceGetX.dart';
-import 'package:client_user/container/campTimeline/model/categoryDeviceTile.dart';
+import 'package:client_user/Getx/campDetailGetX.dart';
+import 'package:client_user/Getx/categoryDeviceGetX.dart';
+import 'package:client_user/container/homePage/categoryDeviceTile.dart';
 //import 'package:client_user/model/homePage/camp/campData.dart';
-import 'package:client_user/screen/homePage/camp/myCamp.dart';
-import 'package:client_user/container/campTimeline/model/categoryTile.dart';
+import 'package:client_user/screen/homePage/myCamp.dart';
+import 'package:client_user/container/homePage/categoryTile.dart';
 import 'package:client_user/container/homePage/profile.dart';
-import 'package:client_user/provider/idCollector.dart';
+// import 'package:client_user_modify/provider/idCollector.dart';
+import 'package:client_user/Getx/collector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
-class CategoryList extends StatefulWidget {
-  @override
-  CategoryListState createState() => CategoryListState();
-}
+class CategoryList extends StatelessWidget {
+  // @override
+  // CategoryListState createState() => CategoryListState();
 
-class CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(CategoryDeviceGetX());
@@ -59,3 +58,5 @@ class CategoryListState extends State<CategoryList> {
     );
   }
 }
+
+// class CategoryListState extends State<CategoryList> {}
