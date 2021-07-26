@@ -53,27 +53,27 @@ class CampTile {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                subtitle: Text(
-                  item['address'],
-                  style: TextStyle(
-                    fontSize: 15,
+                // subtitle: Text(
+                //   item['address'],
+                //   style: TextStyle(
+                //     fontSize: 15,
+                //   ),
+                // ),
+              ),
+              ListTile(
+                title: RaisedButton(
+                  color: Colors.green,
+                  onPressed: () => {
+                    controller.setSelectedCampId(item['id']),
+                    controller.apiCampDetail(),
+                    Get.to(CampDetailScreen()),
+                  },
+                  child: Text(
+                    '관리',
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
-              // ListTile(
-              //   title: RaisedButton(
-              //     color: Colors.green,
-              //     onPressed: () => {
-              //       controller.setSelectedCampId(item['id']),
-              //       controller.apiCampDetail(),
-              //       Get.to(CampDetailScreen()),
-              //     },
-              //     child: Text(
-              //       '관리',
-              //       style: TextStyle(color: Colors.white),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

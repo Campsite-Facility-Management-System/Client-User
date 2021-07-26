@@ -7,10 +7,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 var campList = List<dynamic>().obs;
+// var campList = List<dynamic>().obs;
 
 class HomePageGetX extends GetxController {
   final token = FlutterSecureStorage();
-  RxList<dynamic> campList;
+  // RxList<dynamic> campList;
   final profile = new MyInfo().obs;
   PageController pageController;
   double viewPortFraction = 0.5;
@@ -21,8 +22,8 @@ class HomePageGetX extends GetxController {
   onInit() {
     super.onInit();
     apiCampList();
-    pageController = PageController(
-        initialPage: currentPage.toInt(), viewportFraction: viewPortFraction);
+    // pageController = PageController(
+    //     initialPage: currentPage.toInt(), viewportFraction: viewPortFraction);
   }
 
   Future<MyInfo> me() async {
@@ -48,13 +49,14 @@ class HomePageGetX extends GetxController {
     String value = await token.read(key: 'token');
     String myToken = ("Bearer " + value.toString());
 
-    var response = await http.post(Uri.parse(url), headers: {
+    var response = await http.get(Uri.parse(url), headers: {
       'Authorization': myToken,
     });
 
     //.value 제거
     campList.value = jsonDecode(utf8.decode(response.bodyBytes)) as List;
-    return campList;
+
+    print("campList: " + campList.value.toString());
   }
 
   @override
