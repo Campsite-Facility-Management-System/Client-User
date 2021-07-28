@@ -71,8 +71,8 @@ class CategoryDeviceGetX extends GetxController {
       setCMap(detailData[i]['id'], detailData[i]['name']);
     }
 
-    print(detailData);
-    print(detailData[0]);
+    // print(detailData);
+    // print(detailData[0].toString());
     update();
   }
 }

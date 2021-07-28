@@ -23,7 +23,7 @@ class ReservationScreen extends StatefulWidget {
 
 class ReservationScreenState extends State<ReservationScreen> {
   final token = new FlutterSecureStorage();
-  static final provider = new IdCollector();
+  // static final provider = new IdCollector();
   // final tokenFunction = TokenFunction();
   final controller = new TokenGetX();
   TextEditingController adult_number = new TextEditingController();

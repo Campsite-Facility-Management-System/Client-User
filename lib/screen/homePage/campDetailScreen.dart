@@ -55,6 +55,7 @@ class CampDetailScreen extends StatelessWidget {
     final controller = Get.put(CampDetailGetX());
     final categoryDeviceController = Get.put(CategoryDeviceGetX());
 
+    controller.apiCampDetail();
     // print(Env.url + (controller.campDetailData['img_url'][0]['img_url']));
     // controller.getData();
     // controller.selectedCampId = item['id'];
@@ -215,7 +216,7 @@ class CampDetailScreen extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(15))),
           onPressed: () {
-            // categoryDeviceController.apiDetailData();
+            categoryDeviceController.apiDetailData();
             Future.delayed(Duration(milliseconds: 1000), () {
               // Do something
             });

@@ -61,6 +61,7 @@ class MyCamp {
                 title: TextButton(
                   //item['name'],
                   onPressed: () => {
+                    // print("tagging" + item['id'].toString()),
                     // Provider.of<IdCollector>(context, listen: false)
                     //     .setCampId(item['id']),
                     controller.selectedCampId = item['id'],

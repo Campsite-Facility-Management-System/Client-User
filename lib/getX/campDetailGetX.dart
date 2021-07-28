@@ -41,6 +41,7 @@ class CampDetailGetX extends GetxController {
 
   setSelectedCampId(id) {
     this.selectedCampId = id;
+    // print('campId: ' + selectedCampId.toString());
   }
 
   setDetailData(data) {
@@ -54,24 +55,40 @@ class CampDetailGetX extends GetxController {
   }
 
   apiCampDetail() async {
-    var url = Env.url + '/api/campsite/user/detail/list';
+    // var url = Env.url + '/api/campsite/user/detail/list';
+    var url = Env.url +
+        '/api/reservation/user/campsite/info?campsite_id=' +
+        selectedCampId.toString();
     String value = await token.read(key: 'token');
     String myToken = ("Bearer " + value);
 
-    var response = await http.post(Uri.parse(url), headers: {
-      'Authorization': myToken,
-    }, body: {
-      'campsite_id': selectedCampId.toString(),
-    });
+    var response = await http.get(
+      Uri.parse(url),
+      // headers: {
+      //   'campsite_id': selectedCampId.toString(),
+      // },
+      // body: {
+      //   'campsite_id': selectedCampId.toString(),
+      // }
+    );
+
+    print("tagging" + detailData.toString());
+    print("tag2" + selectedCampId.toString());
 
     await setDetailData(jsonDecode(utf8.decode(response.bodyBytes)));
 
+    // await setDetailData(
+    //     jsonDecode(utf8.decode((await http.get(Uri.parse(url))).bodyBytes)));
+
+    // print(d)
     cMap.clear();
     for (var i = 0; i < detailData.length; i++) {
       setCMap(detailData[i]['id'], detailData[i]['name']);
     }
 
-    print(detailData);
+    update();
+
+    print(detailData.toString());
   }
 
   // getData() async {
