@@ -16,12 +16,10 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:client_user/Getx/reservationGetX.dart';
 import 'package:intl/intl.dart';
 
-class ReservationScreen extends StatefulWidget {
-  @override
-  ReservationScreenState createState() => ReservationScreenState();
-}
+class ReservationScreen extends StatelessWidget {
+  // @override
+  // ReservationScreenState createState() => ReservationScreenState();
 
-class ReservationScreenState extends State<ReservationScreen> {
   final token = new FlutterSecureStorage();
   // static final provider = new IdCollector();
   // final tokenFunction = TokenFunction();
@@ -64,48 +62,41 @@ class ReservationScreenState extends State<ReservationScreen> {
     String _range = '';
     String _rangeCount = '';
 
-    void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
-      /// The argument value will return the changed date as [DateTime] when the
-      /// widget [SfDateRangeSelectionMode] set as single.
-      ///
-      /// The argument value will return the changed dates as [List<DateTime>]
-      /// when the widget [SfDateRangeSelectionMode] set as multiple.
-      ///
-      /// The argument value will return the changed range as [PickerDateRange]
-      /// when the widget [SfDateRangeSelectionMode] set as range.
-      ///
-      /// The argument value will return the changed ranges as
-      /// [List<PickerDateRange] when the widget [SfDateRangeSelectionMode] set as
-      /// multi range.
-      setState(() {
-        if (args.value is PickerDateRange) {
-          _range =
-              DateFormat('yyyyMMdd').format(args.value.startDate).toString() +
-                  ' - ' +
-                  DateFormat('yyyyMMdd')
-                      .format(args.value.endDate ?? args.value.startDate)
-                      .toString();
-          print(_range);
-          startDate =
-              DateFormat('yyyyMMdd').format(args.value.startDate).toString();
-          endDate = DateFormat('yyyyMMdd')
-              .format(args.value.endDate ?? args.value.startDate)
-              .toString();
-        } else if (args.value is DateTime) {
-          _selectedDate = args.value.toString();
-        } else if (args.value is List<DateTime>) {
-          _dateCount = args.value.length.toString();
-        } else {
-          _rangeCount = args.value.length.toString();
-        }
-      });
+    // void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    //   /// The argument value will return the changed range as [PickerDateRange]
+    //   /// when the widget [SfDateRangeSelectionMode] set as range.
+    //   setState(() {
+    //     if (args.value is PickerDateRange) {
+    //       _range =
+    //           DateFormat('yyyyMMdd').format(args.value.startDate).toString() +
+    //               ' - ' +
+    //               DateFormat('yyyyMMdd')
+    //                   .format(args.value.endDate ?? args.value.startDate)
+    //                   .toString();
+    //       print(_range);
+    //       startDate =
+    //           DateFormat('yyyyMMdd').format(args.value.startDate).toString();
+    //       endDate = DateFormat('yyyyMMdd')
+    //           .format(args.value.endDate ?? args.value.startDate)
+    //           .toString();
+    //     } else if (args.value is DateTime) {
+    //       //불필요
+    //       _selectedDate = args.value.toString(); //불필요
+    //     } else if (args.value is List<DateTime>) {
+    //       //불필요
+    //       _dateCount = args.value.length.toString(); //불필요
+    //     } else {
+    //       //불필요
+    //       _rangeCount = args.value.length.toString(); //불필요
+    //     } //불필요
+    //   });
 
-      // _postRequest() async {
-      //   http.Response response = await http.post(url, headers: <String, String> {
+    //   // _postRequest() async {
+    //   //   http.Response response = await http.post(url, headers: <String, String> {
 
-      //   })
-      // }
-    }
+    //   //   })
+    //   // }
+    // }
 
     return Scaffold(
       appBar: AppBar(
@@ -139,7 +130,36 @@ class ReservationScreenState extends State<ReservationScreen> {
                       child: SfDateRangePicker(
                         view: DateRangePickerView.month,
                         selectionMode: DateRangePickerSelectionMode.range,
-                        onSelectionChanged: _onSelectionChanged,
+                        onSelectionChanged:
+                            (DateRangePickerSelectionChangedArgs args) {
+                          if (args.value is PickerDateRange) {
+                            _range = (DateFormat('yyyyMMdd')
+                                    .format(args.value.startDate)
+                                    .toString() +
+                                ' - ' +
+                                DateFormat('yyyyMMdd')
+                                    .format(args.value.endDate ??
+                                        args.value.startDate)
+                                    .toString());
+                            print(_range);
+                            startDate = DateFormat('yyyyMMdd')
+                                .format(args.value.startDate)
+                                .toString();
+                            endDate = DateFormat('yyyyMMdd')
+                                .format(
+                                    args.value.endDate ?? args.value.startDate)
+                                .toString();
+                          } else if (args.value is DateTime) {
+                            //불필요
+                            _selectedDate = args.value.toString(); //불필요
+                          } else if (args.value is List<DateTime>) {
+                            //불필요
+                            _dateCount = args.value.length.toString(); //불필요
+                          } else {
+                            //불필요
+                            _rangeCount = args.value.length.toString(); //불필요
+                          } //불필요
+                        },
                         initialSelectedRange: PickerDateRange(
                           DateTime.now().subtract(const Duration(days: 4)),
                           DateTime.now().add(const Duration(days: 3)),
@@ -166,7 +186,7 @@ class ReservationScreenState extends State<ReservationScreen> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text('어린아 인원수'),
+                        Text('어린이 인원수'),
                       ],
                     ),
                     TextFormField(
@@ -245,3 +265,5 @@ class ReservationScreenState extends State<ReservationScreen> {
     );
   }
 }
+
+// class ReservationScreenState extends State<ReservationScreen> {}
